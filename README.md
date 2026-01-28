@@ -52,6 +52,41 @@ moltbot onboard --install-daemon
 The wizard installs the Gateway daemon (launchd/systemd user service) so it stays running.
 Legacy note: `clawdbot` remains available as a compatibility shim.
 
+## Local Models (Ollama)
+
+You can run Moltbot entirely with local models using [Ollama](https://ollama.com).
+
+1. Install Ollama and pull models:
+   ```bash
+   ollama pull qwen2.5:14b  # Recommended for coding/tools
+   ollama pull llama3.1     # Good for chat
+   ollama pull deepseek-r1:8b # Good for reasoning
+   ```
+
+2. Configure Moltbot to use local models:
+   ```json5
+   // ~/.moltbot/moltbot.json
+   {
+     "models": {
+       "providers": {
+         "ollama": {
+           "baseUrl": "http://127.0.0.1:11434/v1",
+           "apiKey": "ollama-local",
+           "models": [
+              { "id": "qwen2.5:14b", "name": "Qwen 2.5 14b", "contextWindow": 32768 }
+           ]
+         }
+       }
+     },
+     "agents": {
+       "defaults": {
+         "model": { "primary": "ollama/qwen2.5:14b" }
+       }
+     }
+   }
+   ```
+
+
 ## Quick start (TL;DR)
 
 Runtime: **Node ≥22**.

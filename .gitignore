@@ -69,5 +69,17 @@ IDENTITY.md
 USER.md
 .tgz
 
+
 # local tooling
 .serena/
+
+# Moltbot local files
+.moltbot/
+moltbot.json
+*.db
+*.sqlite
+*.sqlite-journal
+.prose/
+.clawdbot/
+credentials/
+state/
